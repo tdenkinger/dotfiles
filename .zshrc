@@ -16,7 +16,7 @@ SAVEHIST=20000
 plugins=(git rvm)
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/zsh/aliases
+source $HOME/zsh_aliases
 
 unsetopt correct_all
 unsetopt correct
