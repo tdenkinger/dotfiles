@@ -1,6 +1,3 @@
-" This is Gary Bernhardt's .vimrc file
-" vim:set ts=2 sts=2 sw=2 expandtab:
-
 call pathogen#runtime_append_all_bundles()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,8 +17,7 @@ set laststatus=2
 set showmatch
 set incsearch
 set hlsearch
-
-set number
+set relativenumber
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 " highlight current line
@@ -418,3 +414,7 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
+
+map <Leader>gac :Gcommit -m -a ""<LEFT>
+map <Leader>gs :Gstatus<CR>
+map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
