@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/tdenkin/Desktop/Test Sites/Silvio/images'
+let g:netrw_dirhist_2='/Users/tdenkin/.zshrc.conf'
+let g:netrw_dirhist_3='/Users/tdenkin/zsh'
