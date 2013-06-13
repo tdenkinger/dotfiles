@@ -11,12 +11,12 @@ Bundle 'mileszs/ack.vim'
 Bundle 'wincent/Command-T'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/taglist.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'wikitopian/hardmode'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
+Bundle 'vim-scripts/taglist.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
