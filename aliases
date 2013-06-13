@@ -1,2 +1,5 @@
 alias ls="ls -alG"
 alias tools="vim ~/Dropbox/toolbelt"
+alias talks="vim ~/Dropbox/talk_topics"
+alias gs="git status"
+
