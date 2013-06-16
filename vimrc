@@ -418,3 +418,8 @@ command! PrettyXML call DoPrettyXML()
 map <Leader>gac :Gcommit -m -a ""<LEFT>
 map <Leader>gs :Gstatus<CR>
 map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
+
+
+au BufRead,BufNewFile *.md set filetype=markdown
+
+
