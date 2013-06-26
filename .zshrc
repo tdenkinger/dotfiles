@@ -23,6 +23,7 @@ unsetopt correct
 
 export PATH="/usr/local/heroku/bin:$PATH:$HOME/.rvm/bin:/usr/local/bin:$HOME/bin:/user/local/sbin"
 export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
+export PATH=$HOME/elixir/bin:$PATH
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/projects/go
