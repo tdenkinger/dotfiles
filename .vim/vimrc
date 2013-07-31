@@ -18,6 +18,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'sunaku/vim-ruby-minitest'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
@@ -402,7 +403,7 @@ command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
 map Q <Nop>
 
-autocmd BufWritePre *.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.markdown :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html :call <SID>StripTrailingWhitespaces()
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
