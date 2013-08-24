@@ -441,4 +441,5 @@ map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 
 au BufRead,BufNewFile *.md set filetype=markdown
 
+command! -nargs=* Wrap set wrap linebreak nolist
 
