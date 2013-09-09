@@ -245,7 +245,6 @@ function! InlineVariable()
 endfunction
 nnoremap <leader>ri :call InlineVariable()<cr>
 
-" File navigation via CtrlP plugin
 map <leader>f :CtrlP<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
