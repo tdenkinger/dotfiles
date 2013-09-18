@@ -247,6 +247,7 @@ nnoremap <leader>ri :call InlineVariable()<cr>
 
 " For ctrlp.vim file browser
 map <leader>f :CtrlP<cr>
+let g:ctrlp_working_path_mode = 'ra'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
