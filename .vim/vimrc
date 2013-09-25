@@ -19,6 +19,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'sunaku/vim-ruby-minitest'
+Bundle 'sjl/gundo.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
@@ -416,3 +417,4 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 let g:LustyExplorerSuppressRubyWarning = 1
 
+map <Leader>uu :GundoToggle<CR>
