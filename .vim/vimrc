@@ -31,6 +31,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set nowrap
 set autoindent
 set laststatus=2
 set showmatch
@@ -41,13 +42,14 @@ set relativenumber
 set ignorecase smartcase
 " highlight current line
 set cursorline
+" set cursorcolumn
 set cmdheight=2
 set switchbuf=useopen
 set numberwidth=5
 set showtabline=2
 set winwidth=79
 " This makes RVM work inside Vim. I have no idea why.
-set shell=bash
+"set shell=bash
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
@@ -296,7 +298,7 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\|_test.exs\)$') != -1
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\|_mspec.rb\|_test.exs\)$') != -1
     if in_test_file
         call SetTestFile()
     elseif !exists("t:grb_test_file")
