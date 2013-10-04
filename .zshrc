@@ -31,7 +31,7 @@ export PATH=$PATH:$GOPATH/bin
 
 export EDITOR=vim
 
-export TICKETMASTER_HOME=~/Dropbox/Generator/ticketmaster
+export EXTERNAL_ORDERS_HOME=~/Dropbox/Generator/external_orders
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
