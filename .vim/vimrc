@@ -74,6 +74,9 @@ nnoremap <Leader>w :w<CR>
 inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
+map <leader>f :CtrlP<cr>
+let g:ctrlp_working_path_mode = 'ra'
+
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
