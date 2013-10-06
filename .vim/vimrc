@@ -295,3 +295,4 @@ au BufRead,BufNewFile *.md set filetype=markdown
 let g:LustyExplorerSuppressRubyWarning = 1
 
 map <Leader>uu :GundoToggle<CR>
+map <c-j> ^
