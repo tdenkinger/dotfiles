@@ -24,6 +24,8 @@ runtime macros/matchit.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set si
+set novisualbell
 set autoread
 set hidden
 set winwidth=80
@@ -38,12 +40,17 @@ set showmatch
 set incsearch
 set hlsearch
 set relativenumber
+set nobackup
+set nowb
+set noswapfile
+set linebreak
 set ignorecase smartcase
 set cursorline
+set magic
 " set cursorcolumn
 set cmdheight=2
 set switchbuf=useopen
-set numberwidth=5
+set numberwidth=4
 set showtabline=2
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
@@ -69,6 +76,8 @@ set wildmode=longest,list
 set wildmenu
 let mapleader=","
 
+map <leader>ba :1,300 bd!<br>
+
 " Fast saving in all modes
 nnoremap <Leader>w :w<CR>
 inoremap <C-w> <Esc>:w<CR>
@@ -76,6 +85,8 @@ vnoremap <Leader>w <Esc>:w<CR>
 
 map <leader>f :CtrlP<cr>
 let g:ctrlp_working_path_mode = 'ra'
+
+autocmd! bufwritepost .vimrc source ~/.vimrc
 
 augroup vimrcEx
   " Clear all autocmds in the group
@@ -115,7 +126,13 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+
+function! CurDir()
+    let curdir = substitute(getcwd(), '/Users/tdenking/', "~/", "g")
+    return curdir
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
