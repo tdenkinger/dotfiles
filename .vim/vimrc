@@ -28,6 +28,7 @@ set si
 set novisualbell
 set autoread
 set hidden
+set nowrap
 set winwidth=80
 set history=10000
 set expandtab
