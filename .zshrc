@@ -29,4 +29,4 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/projects/go
 export PATH=$PATH:$GOPATH/bin
 
-export TICKETMASTER_HOME=~/Dropbox/Generator/ticketmaster
+export EXTERNAL_ORDERS_HOME=~/Dropbox/Generator/Apps/external_ingester
