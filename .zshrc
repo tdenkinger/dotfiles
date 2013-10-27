@@ -35,3 +35,4 @@ export EDITOR=vim
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+export SHELL=/bin/zsh

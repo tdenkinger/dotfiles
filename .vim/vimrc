@@ -46,7 +46,7 @@ set nowb
 set noswapfile
 set linebreak
 set ignorecase smartcase
-set cursorline
+" set cursorline
 set magic
 " set cursorcolumn
 set cmdheight=2
