@@ -29,7 +29,7 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/projects/go
 export PATH=$PATH:$GOPATH/bin
 
-export EXTERNAL_ORDERS_HOME=~/Dropbox/Generator/Apps/external_ingester
+export EXTERNAL_ORDERS_HOME=~/Dropbox/Apps/external_ingester
 export EDITOR=vim
 
 export PATH="$HOME/.rbenv/bin:$PATH"
