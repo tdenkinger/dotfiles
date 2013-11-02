@@ -128,10 +128,11 @@ augroup END
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=%l/%L:%c\ \ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h
 
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/tdenking/', "~/", "g")
+    let curdir = substitute(curdir, "/Users/tdenkinger/", "~/", "g")
     return curdir
 endfunction
 
