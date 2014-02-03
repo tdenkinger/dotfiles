@@ -32,7 +32,13 @@ export PATH=$PATH:$GOPATH/bin
 export EXTERNAL_ORDERS_HOME=~/Dropbox/Apps/external_ingester
 export EDITOR=vim
 
+# These are credentials for Etsy deployinator demos
+export HTTP_X_USERNAME=troy
+export HTTP_X_GROUPS=admin
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 export SHELL=/bin/zsh
+
+
