@@ -24,6 +24,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/bin:/user/local/sbin"
 export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
 export PATH=$HOME/projects/elixir/bin:$PATH
+export PATH=$HOME/mongodb/bin:$PATH
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/projects/go
