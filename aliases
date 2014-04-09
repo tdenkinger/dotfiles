@@ -1,4 +1,4 @@
-alias ls="ls -alG"
+alias ls="ls -alG --color"
 
 alias c="clear"
 alias v="vim"
