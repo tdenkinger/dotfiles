@@ -134,14 +134,13 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-set statusline=%l/%L:%c\ \ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h
-
-function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/tdenking/', "~/", "g")
-    let curdir = substitute(curdir, "/Users/tdenkinger/", "~/", "g")
-    return curdir
-endfunction
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+" :set statusline=%l/%L:%c\ \ %F%m%r%h\ %w\ \ \ %r%{CurDir()}%h
+" function! CurDir()
+"     let curdir = substitute(getcwd(), '/Users/tdenking/', "~/", "g")
+"     let curdir = substitute(curdir, "/Users/tdenkinger/", "~/", "g")
+"     return curdir
+" endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
@@ -214,12 +213,14 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
-map <leader>a :call RunTests('')<cr>
-map <leader>d :call RunTests('--format documentation')<cr>
-map <leader>c :w\|:!script/features<cr>
-" map <leader>w :w\|:!script/features --profile wip<cr>
+function! MapCR()
+    nnoremap <cr> :call RunTestFile()<cr>
+endfunction
+call MapCR()
+nnoremap <leader>t :echo "Use the Enter key!"
+nnoremap <leader>T :call RunNearestTest()<cr>
+nnoremap <leader>a :call RunTests('')<cr>
+nnoremap <leader>d :call RunTests('--format documentation')<cr>
 
 function! RunTestFile(...)
     if a:0
@@ -287,7 +288,10 @@ endfunction
 " Insert the current time
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
-" Remove trailing whitespace from specific file types
+"""""""""
+" Trailing whitespace is mostly bad
+"""""""""
+
 autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html :call <SID>StripTrailingWhitespaces()
 
 function! <SID>StripTrailingWhitespaces()
@@ -302,13 +306,13 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
+" Close all the buffers
 map <Leader>bc :Bclose<CR>
 
+" Yep, .md files are markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
 let g:LustyExplorerSuppressRubyWarning = 1
-
-map <Leader>uu :GundoToggle<CR>
 
 " In insert mode, cursor is a pipe. In normal mode, a block 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
