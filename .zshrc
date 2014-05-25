@@ -3,7 +3,7 @@ ZSH_CUSTOM=$HOME/zsh_custom
 ZSH_THEME="troy"
 
 chpwd() {
-  ls -alG
+  ls -lG
 }
 
 HISTSIZE=20000
@@ -26,10 +26,11 @@ export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
 export PATH=$HOME/projects/elixir/bin:$PATH
 export PATH=$HOME/mongodb/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
+export PATH="$PATH:/path/to/elixir/bin"
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/projects/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 export EXTERNAL_ORDERS_HOME=~/Dropbox/Apps/external_ingester
 export EDITOR=vim

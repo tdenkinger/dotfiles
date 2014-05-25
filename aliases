@@ -5,6 +5,7 @@ alias tools="vim ~/Dropbox/toolbelt"
 alias talks="vim ~/Dropbox/talk_topics"
 alias aliases="vim ~/dotfiles/aliases"
 alias vimrc="vim ~/dotfiles/.vim/vimrc"
+alias ls="ls -l"
 
 alias ga="git add -A"
 alias gcm="git commit -m"
