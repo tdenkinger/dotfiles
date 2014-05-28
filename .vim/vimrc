@@ -154,7 +154,7 @@ nnoremap <c-l> <c-w>l
 inoremap kj <esc>
 " Clear the search buffer when hitting return
 function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
+  nnoremap <space> :nohlsearch<cr>
 endfunction
 call MapCR()
 
