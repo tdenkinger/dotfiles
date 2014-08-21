@@ -5,7 +5,8 @@ alias tools="vim ~/Dropbox/toolbelt"
 alias talks="vim ~/Dropbox/talk_topics"
 alias aliases="vim ~/dotfiles/aliases"
 alias vimrc="vim ~/dotfiles/.vim/vimrc"
-alias ls="ls -l"
+alias ls="ls -lG"
+alias l="ls -alG"
 
 alias ga="git add -A"
 alias gcm="git commit -m"
@@ -17,3 +18,5 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias pr="cd ~/projects"
 
 alias gen_hash="ruby -e 'require \"securerandom\"; p SecureRandom.hex[0..9]'"
+
+alias be="bundle exec"
