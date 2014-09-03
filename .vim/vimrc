@@ -1,6 +1,6 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'gmarik/vundle'
@@ -19,6 +19,8 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'thoughtbot/vim-rspec'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -28,6 +30,8 @@ filetype plugin indent off
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set si
+" Required to make sure vim uses rvm correctly
+set shell=/bin/sh
 set novisualbell
 set autoread
 set hidden
@@ -45,6 +49,7 @@ set showmatch
 set incsearch
 set hlsearch
 set relativenumber
+set number
 set nobackup
 set nowb
 set noswapfile
@@ -214,80 +219,18 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! MapCR()
-    nnoremap <cr> :call RunTestFile()<cr>
+    map <cr> :call RunCurrentSpecFile()<cr>
 endfunction
+
 call MapCR()
-nnoremap <leader>t :echo "Use the Enter key!"
-nnoremap <leader>T :call RunNearestTest()<cr>
-nnoremap <leader>a :call RunTests('')<cr>
-nnoremap <leader>d :call RunTests('--format documentation')<cr>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
+" The above testing only covers rspec. Might want to extend or create the
+" ability to handle non-rspec tets
+" let in_test_file = match(expand("%"),'\(.feature\|_spec.rb\|_test.rb\|_mspec.rb\|_test.exs\|_test.go\|.spec.js\)$') != -1
 
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"),'\(.feature\|_spec.rb\|_test.rb\|_mspec.rb\|_test.exs\|_test.go\|.spec.js\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    if match(a:filename, '\.feature$') != -1
-      if filereadable("script/features")
-        exec ":!script/features " . a:filename
-      else
-        exec ":!features " . a:filename
-      end
-    elseif match(a:filename, '_test.rb$') != -1
-      if filereadable("Gemfile")
-        exec ":!bundle exec ruby " . a:filename
-      else
-        exec ":!ruby " . a:filename
-      end
-    elseif match(a:filename, '_test.exs$') != -1
-        exec ":!elixir " . a:filename
-    elseif match(a:filename, '_test.go$') != -1
-        exec ":!go test"
-    elseif match(a:filename, '.spec.js$') != -1
-        exec ":!jasmine-node " . a:filename
-    else
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable('~/bin/test')
-            exec ":!test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        else
-            exec ":!rspec --color " . a:filename
-        end
-    end
-endfunction
 
 " Insert the current time
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
@@ -296,7 +239,7 @@ command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 " Trailing whitespace is mostly bad
 """""""""
 
-autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature :call <SID>StripTrailingWhitespaces()
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
