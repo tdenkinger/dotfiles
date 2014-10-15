@@ -24,7 +24,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/bin:/user/local/sbin"
 export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
 export PATH=$HOME/projects/elixir/bin:$PATH
-export PATH=$HOME/mongodb/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
 export PATH="$PATH:/path/to/elixir/bin"
 
@@ -44,4 +43,6 @@ eval "$(rbenv init -)"
 
 export SHELL=/bin/zsh
 
+export DOCKER_HOST=tcp://192.168.59.103:2375
 
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
