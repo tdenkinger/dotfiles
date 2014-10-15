@@ -3,6 +3,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
+Plugin 'mileszs/ack.vim'
 Plugin 'gmarik/vundle'
 Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
@@ -32,10 +33,11 @@ filetype plugin indent off
 set si
 " Required to make sure vim uses rvm correctly
 set shell=/bin/sh
+set clipboard=unnamed
 set novisualbell
 set autoread
 set hidden
-set wrap
+set nowrap
 set winwidth=80
 set colorcolumn=81
 set history=10000
@@ -219,27 +221,23 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! MapCR()
-    map <cr> :call RunCurrentSpecFile()<cr>
+    map <cr> :w<CR>:call RunCurrentSpecFile()<cr>
 endfunction
 
 call MapCR()
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>t :w<CR>:call RunNearestSpec()<CR>
+map <Leader>l :w<CR>:call RunLastSpec()<CR>
+map <Leader>a :w<CR>:call RunAllSpecs()<CR>
 
 " The above testing only covers rspec. Might want to extend or create the
-" ability to handle non-rspec tets
+" ability to handle non-rspec tests
 " let in_test_file = match(expand("%"),'\(.feature\|_spec.rb\|_test.rb\|_mspec.rb\|_test.exs\|_test.go\|.spec.js\)$') != -1
-
 
 " Insert the current time
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
-"""""""""
 " Trailing whitespace is mostly bad
-"""""""""
-
-autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
@@ -267,3 +265,5 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 :hi ColorColumn guibg=#2d2d2d ctermbg=229 ctermfg=236
 :hi CursorColumn guibg=#2d2d2d ctermbg=234
+
+let g:rspec_command = "!bundle exec rspec {spec}"
