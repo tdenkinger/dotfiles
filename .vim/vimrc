@@ -3,6 +3,10 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
 Plugin 'gmarik/vundle'
 Plugin 'Townk/vim-autoclose'
@@ -21,7 +25,8 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'thoughtbot/vim-rspec'
+Plugin 'skalnik/vim-vroom'
+Plugin 'wting/rust.vim'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -139,17 +144,6 @@ augroup END
 :color railscasts
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" STATUS LINE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-" :set statusline=%l/%L:%c\ \ %F%m%r%h\ %w\ \ \ %r%{CurDir()}%h
-" function! CurDir()
-"     let curdir = substitute(getcwd(), '/Users/tdenking/', "~/", "g")
-"     let curdir = substitute(curdir, "/Users/tdenkinger/", "~/", "g")
-"     return curdir
-" endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>y "*y
@@ -166,75 +160,11 @@ endfunction
 call MapCR()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! MapCR()
-    map <cr> :w<CR>:call RunCurrentSpecFile()<cr>
-endfunction
-
-call MapCR()
-map <Leader>t :w<CR>:call RunNearestSpec()<CR>
-map <Leader>l :w<CR>:call RunLastSpec()<CR>
-map <Leader>a :w<CR>:call RunAllSpecs()<CR>
-
-" The above testing only covers rspec. Might want to extend or create the
-" ability to handle non-rspec tests
-" let in_test_file = match(expand("%"),'\(.feature\|_spec.rb\|_test.rb\|_mspec.rb\|_test.exs\|_test.go\|.spec.js\)$') != -1
-
-" Insert the current time
-command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
 " Trailing whitespace is mostly bad
 autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
@@ -251,9 +181,6 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
-" Close all the buffers
-map <Leader>bc :Bclose<CR>
-
 " Yep, .md files are markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
@@ -266,4 +193,4 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 :hi ColorColumn guibg=#2d2d2d ctermbg=229 ctermfg=236
 :hi CursorColumn guibg=#2d2d2d ctermbg=234
 
-let g:rspec_command = "!bundle exec rspec {spec}"
+let g:NERDTreeDirArrows=0
