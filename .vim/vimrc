@@ -27,6 +27,9 @@ Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'skalnik/vim-vroom'
 Plugin 'wting/rust.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'raichoo/haskell-vim'
+Plugin 'jpalardy/vim-slime'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -167,7 +170,7 @@ map <leader>e :edit %%
 map <leader>v :view %%
 
 " Trailing whitespace is mostly bad
-autocmd BufWritePre *.go,*.yml,*.ex,*.exs,*.rb,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.hs,*.go,*.yml,*.ex,*.exs,*.rb,*.rake,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
@@ -194,3 +197,5 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 :hi CursorColumn guibg=#2d2d2d ctermbg=234
 
 let g:NERDTreeDirArrows=0
+let g:vroom_clear_screen=0
+let g:slime_target = "tmux"
