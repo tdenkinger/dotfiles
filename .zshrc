@@ -31,18 +31,18 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/projects/go
 export PATH=$PATH:$GOROOT/bin
 
-export EXTERNAL_ORDERS_HOME=~/Dropbox/Apps/external_ingester
 export EDITOR=vim
-
-# These are credentials for Etsy deployinator demos
-export HTTP_X_USERNAME=troy
-export HTTP_X_GROUPS=admin
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 export SHELL=/bin/zsh
 
-export DOCKER_HOST=tcp://192.168.59.103:2375
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export JAVA_HOME=`/usr/libexec/java_home`
+export AWS_IAM_HOME=~/bin/IAMCli-1.5.0
+export AWS_CREDENTIAL_FILE=$AWS_IAM_HOME/aws-credential.template
+export PATH=$AWS_IAM_HOME/bin:$PATH
+
+export LC_ALL=en_US.utf-8 
+export LANG="$LC_ALL"
