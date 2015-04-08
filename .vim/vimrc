@@ -7,7 +7,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'scrooloose/nerdtree'
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
 Plugin 'gmarik/vundle'
 Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
@@ -30,6 +30,7 @@ Plugin 'wting/rust.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'raichoo/haskell-vim'
 Plugin 'jpalardy/vim-slime'
+Plugin 'rking/ag.vim'
 call vundle#end()
 
 runtime macros/matchit.vim
