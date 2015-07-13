@@ -7,7 +7,6 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'mileszs/ack.vim'
 Plugin 'gmarik/vundle'
 Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
@@ -31,6 +30,8 @@ Plugin 'groenewege/vim-less'
 Plugin 'raichoo/haskell-vim'
 Plugin 'jpalardy/vim-slime'
 Plugin 'rking/ag.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -200,3 +201,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let g:NERDTreeDirArrows=0
 let g:vroom_clear_screen=0
 let g:slime_target = "tmux"
+let g:notes_directories = ['~/Documents/Notes']
+
+" This is used to remove accents from the YouTube adjustment reports so they
+" process through the SIP system correctly.
+:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O')
