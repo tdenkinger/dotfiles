@@ -27,9 +27,8 @@ export PATH=$HOME/projects/elixir/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
 export PATH="$PATH:/path/to/elixir/bin"
 
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/projects/go
-export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/projects/go_projects
+export PATH=$PATH:$GOPATH/bin
 
 export EDITOR=vim
 
