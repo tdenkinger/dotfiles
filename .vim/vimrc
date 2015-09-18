@@ -7,7 +7,6 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'scrooloose/nerdtree'
-Plugin 'gmarik/vundle'
 Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
@@ -21,20 +20,16 @@ Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'sjl/gundo.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'skalnik/vim-vroom'
-Plugin 'wting/rust.vim'
 Plugin 'groenewege/vim-less'
-Plugin 'raichoo/haskell-vim'
 Plugin 'jpalardy/vim-slime'
 Plugin 'rking/ag.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
+Plugin 'begriffs/haskell-vim-now'
 call vundle#end()
 
-runtime macros/matchit.vim
+" runtime macros/matchit.vim
 filetype plugin indent off
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
