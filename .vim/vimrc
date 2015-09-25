@@ -26,7 +26,6 @@ Plugin 'groenewege/vim-less'
 Plugin 'jpalardy/vim-slime'
 Plugin 'rking/ag.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'begriffs/haskell-vim-now'
 call vundle#end()
 
 " runtime macros/matchit.vim
