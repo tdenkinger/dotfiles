@@ -102,6 +102,9 @@ nnoremap <Leader>w :w<CR>
 inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
+" Write the file when leavin insert mode
+:au InsertLeave <buffer> update
+
 map <leader>f :CtrlP<cr>
 let g:ctrlp_working_path_mode = 'ra'
 
@@ -166,7 +169,7 @@ map <leader>e :edit %%
 map <leader>v :view %%
 
 " Trailing whitespace is mostly bad
-autocmd BufWritePre *.hs,*.go,*.yml,*.ex,*.exs,*.rb,*.rake,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature,*.erb :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.hs,*.go,*.yml,*.ex,*.exs,*.rb,*.rake,*.js,*.yaml,*.json,*.xml,*.css,*.html,*.feature,*.erb,*.clj :call <SID>StripTrailingWhitespaces()
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
@@ -200,3 +203,4 @@ let g:notes_directories = ['~/Documents/Notes']
 " This is used to remove accents from the YouTube adjustment reports so they
 " process through the SIP system correctly.
 :map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O')
+
