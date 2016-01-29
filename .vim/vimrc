@@ -13,7 +13,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-ruby/vim-ruby'
-" Verified down to here
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'sunaku/vim-ruby-minitest'
@@ -35,7 +34,6 @@ filetype plugin indent off
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set si
-" Required to make sure vim uses rvm correctly
 set shell=/bin/sh
 set clipboard=unnamed
 set novisualbell
@@ -101,6 +99,9 @@ map <leader>ba :1,300 bd!<br>
 nnoremap <Leader>w :w<CR>
 inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
+
+" Write the file when leavin insert mode
+:au InsertLeave <buffer> update
 
 map <leader>f :CtrlP<cr>
 let g:ctrlp_working_path_mode = 'ra'
@@ -191,5 +192,3 @@ inoremap <Down> <Esc>:m .+1<CR>==gi
 vnoremap <Up> :m '<-2<CR>gv=gv''
 vnoremap <Down> :m '>+1<CR>gv=gv
 
-" Write the file when leaving insert mode
-:au InsertLeave <buffer> update
