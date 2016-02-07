@@ -103,7 +103,7 @@ inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
 " Write the file when leavin insert mode
-:au InsertLeave <buffer> update
+:au InsertLeave <buffer> w
 
 map <leader>f :CtrlP<cr>
 let g:ctrlp_working_path_mode = 'ra'
