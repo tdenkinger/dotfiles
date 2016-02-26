@@ -27,7 +27,7 @@ Plugin 'rking/ag.vim'
 Plugin 'xolox/vim-misc'
 call vundle#end()
 
-" runtime macros/matchit.vim
+runtime macros/matchit.vim
 filetype plugin indent off
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -103,10 +103,14 @@ vnoremap <Leader>w <Esc>:w<CR>
 " Write the file when leavin insert mode
 :au InsertLeave <buffer> w
 
-
-
 map <leader>f :CtrlP<cr>
 let g:ctrlp_working_path_mode = 'ra'
+" Make CtrlP use ag for listing the files. Way faster and no useless files.
+" Without --hidden, it never finds .travis.yml since it starts with a dot
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+" Enable MRU for CtrlP
+let g:ctrlp_cmd = 'CtrlP'
 
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
@@ -148,13 +152,16 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>y "*y
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+" use either key combo to leave mode
 inoremap kj <esc>
+inoremap jk <esc>
+
 " Clear the search buffer when hitting return
 function! MapCR()
   nnoremap <space> :nohlsearch<cr>
@@ -178,8 +185,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 :hi ColorColumn guibg=#2d2d2d ctermbg=229 ctermfg=236
 :hi CursorColumn guibg=#2d2d2d ctermbg=234
 
+" using vroom to run tests, do not clear the screen before the run
 let g:vroom_clear_screen=0
-let g:slime_target = "tmux"
 
 " This is used to remove accents from the YouTube adjustment reports so they
 " process through the SIP system correctly.
@@ -193,13 +200,13 @@ inoremap <Up> <Esc>:m .-2<CR>==gi
 inoremap <Down> <Esc>:m .+1<CR>==gi
 vnoremap <Up> :m '<-2<CR>gv=gv''
 vnoremap <Down> :m '>+1<CR>gv=gv
+" Move characters left/right using the arrow keys
+nnoremap <Right> xp
+nnoremap <Left> Xph
 
+" with out this, editing crontabs fails on some machines
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-" Without --hidden, it never finds .travis.yml since it starts with a dot
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+" Map whole line completion to a single key
+inoremap <C-l> <C-x><C-l>
 
-" Enable MRU for CtrlP
-let g:ctrlp_cmd = 'CtrlP'
