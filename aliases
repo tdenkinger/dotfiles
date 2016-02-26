@@ -20,3 +20,5 @@ alias pr="cd ~/projects"
 alias gen_hash="ruby -e 'require \"securerandom\"; p SecureRandom.hex[0..9]'"
 
 alias be="bundle exec"
+
+alias prodb3="ssh -i .ssh/prod_key deploy@prodb3.tunecore.com"
