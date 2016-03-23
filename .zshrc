@@ -39,7 +39,6 @@ export LANG="$LC_ALL"
 
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-
+chruby ruby-2.3
