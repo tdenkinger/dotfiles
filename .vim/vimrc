@@ -90,9 +90,6 @@ set wildmode=longest,list
 set wildmenu
 let mapleader=","
 
-" remap the semicolon to be colon
-nnoremap ; :
-
 map <leader>ba :1,300 bd!<br>
 
 " Fast saving in all modes
