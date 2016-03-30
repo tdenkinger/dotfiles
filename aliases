@@ -1,8 +1,6 @@
 alias c="clear"
 alias v="vim"
 
-alias tools="vim ~/Dropbox/toolbelt"
-alias talks="vim ~/Dropbox/talk_topics"
 alias aliases="vim ~/dotfiles/aliases"
 alias vimrc="vim ~/dotfiles/.vim/vimrc"
 alias ls="ls -lG"
@@ -12,6 +10,7 @@ alias ga="git add -A"
 alias gcm="git commit -m"
 alias gs="git status"
 alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gst="git stash -u"
 
 alias tmux="TERM=screen-256color-bce tmux"
 
