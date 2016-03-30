@@ -26,6 +26,8 @@ Plugin 'rking/ag.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'janko-m/vim-test'
 Plugin 'wikitopian/hardmode'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -219,4 +221,11 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-" inoremap <C-j> <esc>
+" Trigger configuration.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-m>"
+let g:UltiSnipsJumpBackwardTrigger="<c-i>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
