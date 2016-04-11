@@ -93,18 +93,10 @@ set wildmode=longest,list
 set wildmenu
 let mapleader=","
 
-" remap the semicolon to be colon
-" nnoremap ; :
-
-map <leader>ba :1,300 bd!<br>
-
 " Fast saving in all modes
 nnoremap <Leader>w :w<CR>
 inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
-
-" Write the file when leavin insert mode
-:au InsertLeave <buffer> w
 
 map <leader>f :CtrlP<cr>
 let g:ctrlp_working_path_mode = 'ra'
@@ -114,37 +106,6 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
 " Enable MRU for CtrlP
 let g:ctrlp_cmd = 'CtrlP'
-
-
-autocmd! bufwritepost .vimrc source ~/.vimrc
-
-augroup vimrcEx
-  " Clear all autocmds in the group
-  autocmd!
-  autocmd FileType text setlocal textwidth=78
-  " Jump to last cursor position unless it's invalid or in an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-  autocmd FileType python set sw=4 sts=4 et
-
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass
-
-  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
-  " Don't syntax highlight markdown because it's often wrong
-  autocmd! FileType mkd setlocal syn=off
-  autocmd! FileType markdown setlocal syn=off
-
-  " Leave the return key alone when in command line windows, since it's used
-  " to run commands there.
-  autocmd! CmdwinEnter * :unmap <cr>
-  autocmd! CmdwinLeave * :call MapCR()
-augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
@@ -223,9 +184,18 @@ nmap <silent> <leader>g :TestVisit<CR>
 
 " Trigger configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-m>"
-let g:UltiSnipsJumpBackwardTrigger="<c-i>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Edit and source the .vimrc easily
+nmap <leader>vr :sp $MYVIMRC<cr>
+nmap <leader>so :source $MYVIMRC<cr>
+
+" Always vertically split diff windows
+set diffopt+=vertical
+
+" Go to the start of the first word in a line
+nmap 0 ^

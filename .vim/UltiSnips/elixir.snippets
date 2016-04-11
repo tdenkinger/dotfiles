@@ -1,3 +1,16 @@
+# Testing specific
+
+snippet testfile
+defmodule $1 do
+  use ExUnit.Case
+  doctest $2
+
+  test "$3" do
+    $0
+  end
+end
+endsnippet
+
 snippet testc
 test "$1", %{conn: conn} do
   $2
@@ -7,5 +20,21 @@ endsnippet
 snippet test
 test "$1" do
   $2
+end
+endsnippet
+
+# Non-testing specific
+
+snippet iop
+IO.puts $1
+endsnippet
+
+snippet ioi
+IO.inspect $1
+endsnippet
+
+snippet module
+defmodule $1 do
+  $0
 end
 endsnippet
