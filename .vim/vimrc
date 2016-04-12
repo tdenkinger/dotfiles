@@ -10,7 +10,7 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
-Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-commentary'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/taglist.vim'
@@ -28,6 +28,7 @@ Plugin 'janko-m/vim-test'
 Plugin 'wikitopian/hardmode'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'tpope/vim-repeat'
 call vundle#end()
 
 runtime macros/matchit.vim
