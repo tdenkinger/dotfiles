@@ -8,7 +8,7 @@ alias l="ls -alG"
 
 alias gs="git status"
 
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color tmux"
 
 alias pr="cd ~/projects"
 
