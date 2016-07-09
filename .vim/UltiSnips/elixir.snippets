@@ -1,11 +1,11 @@
 # Testing specific
 
 snippet testfile
-defmodule $1 do
+defmodule $1Test do
   use ExUnit.Case
-  doctest $2
+  doctest $1
 
-  test "$3" do
+  test "$2" do
     $0
   end
 end
@@ -38,3 +38,5 @@ defmodule $1 do
   $0
 end
 endsnippet
+
+
