@@ -19,7 +19,6 @@ Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'sjl/gundo.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'groenewege/vim-less'
 Plugin 'jpalardy/vim-slime'
 Plugin 'rking/ag.vim'
@@ -30,6 +29,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-repeat'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'elmcast/elm-vim'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -126,8 +126,8 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " use either key combo to leave mode
-inoremap kj <esc>
-inoremap jk <esc>
+inoremap kj <esc>:w<CR>
+inoremap jk <esc>:w<CR>
 
 " Clear the search buffer when hitting return
 function! MapCR()
@@ -180,6 +180,7 @@ inoremap <C-l> <C-x><C-l>
 " vim-test mappings & configuration
 nmap <silent> <leader>R :TestNearest<CR>
 nmap <silent> <leader>r :TestFile<CR>
+nmap <silent> <leader>t :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
@@ -232,3 +233,9 @@ augroup vimrcEx
   autocmd! CmdwinEnter * :unmap <cr>
   autocmd! CmdwinLeave * :call MapCR()
 augroup END
+
+" Create new tab easily
+map <C-t> <esc>:tabnew<CR>
+
+" Turn off the elm-vim mappings
+let g:elm_setup_keybindings = 0
