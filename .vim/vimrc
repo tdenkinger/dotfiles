@@ -128,8 +128,6 @@ nnoremap <c-l> <c-w>l
 " use either key combo to leave mode
 inoremap kj <esc>:w<CR>
 inoremap jk <esc>:w<CR>
-" save using the leave combo, even when in normal mode
-nnoremap kj :w<CR>
 
 " Clear the search buffer when hitting return
 function! MapCR()
@@ -187,16 +185,15 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-" Trigger configuration.
+" Ultisnips configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 " Edit and source the .vimrc easily
-nmap <leader>vr :sp $MYVIMRC<cr>
+nmap <leader>vr :vsp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 
 " Always vertically split diff windows
@@ -230,14 +227,11 @@ augroup vimrcEx
   autocmd! FileType mkd setlocal syn=off
   autocmd! FileType markdown setlocal syn=off
 
-  " Leave the return key alone when in command line windows, since it's used
+" Leave the return key alone when in command line windows, since it's used
   " to run commands there.
   autocmd! CmdwinEnter * :unmap <cr>
   autocmd! CmdwinLeave * :call MapCR()
 augroup END
-
-" Create new tab easily
-map <C-t> <esc>:tabnew<CR>
 
 " Turn off the elm-vim mappings
 let g:elm_setup_keybindings = 0
