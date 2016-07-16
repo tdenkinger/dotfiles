@@ -30,6 +30,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-repeat'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'elmcast/elm-vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'ludovicchabant/vim-gutentags'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -93,6 +95,7 @@ filetype plugin indent on
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
 set wildmenu
+set tags=./tags,tags,./.git/tags;
 let mapleader=","
 
 " Fast saving in all modes
@@ -235,3 +238,13 @@ augroup END
 
 " Turn off the elm-vim mappings
 let g:elm_setup_keybindings = 0
+
+" Toggle the Tab bar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+" Use CtrlP to navigate tags
+nnoremap <leader>. :CtrlPTag<cr>
+
+" Manually rebuild tags file
+nnoremap <F5> :!ctags --tag-relative -R -f ./.git/tags .<cr><cr>
+
