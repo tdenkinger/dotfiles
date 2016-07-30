@@ -236,15 +236,18 @@ augroup vimrcEx
   autocmd! CmdwinLeave * :call MapCR()
 augroup END
 
+" Elm stuff
 " Turn off the elm-vim mappings
 let g:elm_setup_keybindings = 0
+" Automatically format elm on save
+let g:elm_format_autosave = 1
 
+" Ctags stuff
 " Toggle the Tab bar
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
-
 " Use CtrlP to navigate tags
 nnoremap <leader>. :CtrlPTag<cr>
-
 " Manually rebuild tags file
 nnoremap <F5> :!ctags --tag-relative -R -f ./.git/tags .<cr><cr>
+
 
