@@ -11,8 +11,12 @@
 [push]
 	default = upstream
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/troy/.global_ignore
 [merge]
-    ff = only
+    ; ff = only
 [fetch]
     prune = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

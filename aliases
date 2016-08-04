@@ -6,6 +6,8 @@ alias vimrc="vim ~/dotfiles/.vim/vimrc"
 alias ls="ls -lG"
 alias l="ls -alG"
 
+alias ga="git add ."
+alias gcm="git commit -m"
 alias gs="git status"
 
 alias tmux="TERM=screen-256color tmux"
@@ -15,3 +17,5 @@ alias pr="cd ~/projects"
 alias gen_hash="ruby -e 'require \"securerandom\"; p SecureRandom.hex[0..9]'"
 
 alias be="bundle exec"
+
+alias prodb3="TERM=xterm ssh -i ~/.ssh/prod_key deploy@prodb3.tunecore.com"
