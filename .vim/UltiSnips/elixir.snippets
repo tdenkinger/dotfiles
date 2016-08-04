@@ -1,11 +1,11 @@
 # Testing specific
 
 snippet testfile
-defmodule $1 do
+defmodule $1Test do
   use ExUnit.Case
-  doctest $2
+  doctest $1
 
-  test "$3" do
+  test "$2" do
     $0
   end
 end
@@ -25,16 +25,28 @@ endsnippet
 
 # Non-testing specific
 
-snippet iop
+snippet ip
 IO.puts $1
 endsnippet
 
-snippet ioi
+snippet ii
 IO.inspect $1
 endsnippet
 
 snippet module
 defmodule $1 do
+  $0
+end
+endsnippet
+
+snippet def
+def $1 do
+  $0
+end
+endsnippet
+
+snippet defp
+def $1 do
   $0
 end
 endsnippet

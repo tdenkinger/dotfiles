@@ -9,6 +9,8 @@ alias l="ls -alG"
 alias ga="git add ."
 alias gcm="git commit -m"
 alias gs="git status"
+alias ga="git add ."
+alias gcm="git commit -m"
 
 alias tmux="TERM=screen-256color tmux"
 
