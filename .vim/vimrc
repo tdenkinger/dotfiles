@@ -160,7 +160,7 @@ let g:vroom_clear_screen=0
 
 " This is used to remove accents from the YouTube adjustment reports so they
 " process through the SIP system correctly.
-:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_')
+:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U')
 
 " Map up and down arrow keys to move lines and visual selections in
 " normal, insert and visual modes
