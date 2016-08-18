@@ -3,14 +3,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-" Plugin 'gregsexton/gitv'
-" Plugin 'jpalardy/vim-slime'
-" Plugin 'sunaku/vim-ruby-minitest'
-" Plugin 'groenewege/vim-less'
-" Plugin 'xolox/vim-misc'
-" Plugin 'wikitopian/hardmode'
 Plugin 'bling/vim-airline'
-Plugin 'Townk/vim-autoclose'
+Plugin 'jiangmiao/auto-pairs'
+" Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
@@ -104,6 +99,7 @@ inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
 map <leader>f :CtrlP<cr>
+
 let g:ctrlp_working_path_mode = 'ra'
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " This ignores hidden files
