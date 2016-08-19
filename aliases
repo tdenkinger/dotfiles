@@ -21,3 +21,6 @@ alias gen_hash="ruby -e 'require \"securerandom\"; p SecureRandom.hex[0..9]'"
 alias be="bundle exec"
 
 alias prodb3="TERM=xterm ssh -i ~/.ssh/prod_key deploy@prodb3.tunecore.com"
+alias qa="TERM=xterm ssh -i ~/.ssh/prod_key centos@ec2-52-200-167-195.compute-1.amazonaws.com"
+alias www3="TERM=xterm ssh -i ~/.ssh/prod_key deploy@www3.tunecore.com"
+alias lyric="TERM=xterm ssh -i ~/.ssh/prod_key centos@ec2-52-207-196-84.compute-1.amazonaws.com"
