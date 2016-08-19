@@ -107,6 +107,7 @@ inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
 map <leader>f :CtrlP<cr>
+
 let g:ctrlp_working_path_mode = 'ra'
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " This ignores hidden files
