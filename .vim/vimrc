@@ -3,13 +3,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-" Plugin 'gregsexton/gitv'
-" Plugin 'jpalardy/vim-slime'
-" Plugin 'sunaku/vim-ruby-minitest'
-" Plugin 'groenewege/vim-less'
-" Plugin 'xolox/vim-misc'
-" Plugin 'wikitopian/hardmode'
-" Plugin 'kien/ctrlp.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'Townk/vim-autoclose'
@@ -30,11 +23,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'elmcast/elm-vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ngmy/vim-rubocop'
+Plugin 'terryma/vim-multiple-cursors'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -164,7 +156,7 @@ let g:vroom_clear_screen=0
 
 " This is used to remove accents from the YouTube adjustment reports so they
 " process through the SIP system correctly.
-:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U')
+:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚß','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U____s')
 
 " Map up and down arrow keys to move lines and visual selections in
 " normal, insert and visual modes
@@ -255,3 +247,20 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <F5> :!ctags --tag-relative -R -f ./.git/tags .<cr><cr>
 
 map <C-n> :NERDTreeToggle<CR>
+
+" Make it easy to get to ag
+nnoremap \ :Ag<SPACE>
+
+" Use ag for vim's grep
+set grepprg=ag\ --nogroup\ --nocolor
+
+" use ag to search the current project to find all
+" occurrences of the word under the cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" multiple cursor remap
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
