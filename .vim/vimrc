@@ -4,8 +4,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'bling/vim-airline'
-Plugin 'jiangmiao/auto-pairs'
-" Plugin 'Townk/vim-autoclose'
+Plugin 'Townk/vim-autoclose'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
@@ -23,10 +22,7 @@ Plugin 'janko-m/vim-test'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'elmcast/elm-vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'slashmili/alchemist.vim'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -246,4 +242,10 @@ nnoremap <leader>. :CtrlPTag<cr>
 " Manually rebuild tags file
 nnoremap <F5> :!ctags --tag-relative -R -f ./.git/tags .<cr><cr>
 
-
+" Options for Syntastic
+" Check syntax on file open
+let g:syntastic_check_on_open = 1
+" Add errors to the location list, allows jump with :lnext :lprev
+let g:syntastic_always_populate_loc_list = 1
+" Disable check on file save
+" let g:syntastic_check_on_wq = 0
