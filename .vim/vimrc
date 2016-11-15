@@ -25,8 +25,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/syntastic'
 Plugin 'elmcast/elm-vim'
 Plugin 'slashmili/alchemist.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ngmy/vim-rubocop'
 Plugin 'terryma/vim-multiple-cursors'
 call vundle#end()
 
@@ -142,6 +140,7 @@ map <leader>v :view %%
 
 " Strip whitespace on buffer write using the better-whitespace plugin
 autocmd BufWritePre * StripWhitespace
+let g:better_whitespace_filetypes_blacklist=['md', 'markdown']
 
 let g:LustyExplorerSuppressRubyWarning = 1
 
@@ -265,3 +264,6 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " let g:multi_cursor_prev_key='<C-p>'
 " let g:multi_cursor_skip_key='<C-x>'
 " let g:multi_cursor_quit_key='<Esc>'
+
+" Tell alchemist where to find elixir/erlang
+let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"

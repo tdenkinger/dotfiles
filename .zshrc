@@ -39,10 +39,6 @@ export LANG="$LC_ALL"
 
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-chruby ruby-2.3
-
 # Below will attach to a tmux session if tmux is not already running
 # when the shell is started.
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
@@ -54,3 +50,5 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
