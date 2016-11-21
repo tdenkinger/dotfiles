@@ -12,9 +12,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/taglist.vim'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'rking/ag.vim'
@@ -23,9 +21,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/syntastic'
-Plugin 'elmcast/elm-vim'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'ludovicchabant/vim-gutentags'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -98,6 +97,7 @@ inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
 map <leader>f :CtrlP<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 
 let g:ctrlp_working_path_mode = 'ra'
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
@@ -267,3 +267,5 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Tell alchemist where to find elixir/erlang
 let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"
+
+
