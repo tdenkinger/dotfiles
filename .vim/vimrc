@@ -24,7 +24,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'ludovicchabant/vim-gutentags'
 call vundle#end()
 
 runtime macros/matchit.vim
@@ -97,7 +96,6 @@ inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
 map <leader>f :CtrlP<cr>
-nnoremap <leader>. :CtrlPTag<cr>
 
 let g:ctrlp_working_path_mode = 'ra'
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
