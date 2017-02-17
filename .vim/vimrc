@@ -266,4 +266,6 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Tell alchemist where to find elixir/erlang
 let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"
 
-
+" Do not show the git branch in the status line for airline
+let g:airline_section_b = ''
+let g:airline_section_z = ''
