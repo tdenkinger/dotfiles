@@ -35,6 +35,9 @@ command! PackClean  call minpac#clean()
 runtime macros/matchit.vim
 filetype plugin indent off
 
+set runtimepath+=~/.vim,~/.vim/after
+set packpath+=~/.vim
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
