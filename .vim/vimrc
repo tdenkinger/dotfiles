@@ -1,31 +1,36 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'Townk/vim-autoclose'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-repeat'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'rking/ag.vim'
-Plugin 'janko-m/vim-test'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'scrooloose/syntastic'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'rizzatti/dash.vim'
-call vundle#end()
+packadd minpac
+call minpac#init()
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('k-takata/minpac', {'type':'opt'})
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('bling/vim-airline')
+call minpac#add('Townk/vim-autoclose')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-endwise')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('ntpeters/vim-better-whitespace')
+call minpac#add('vim-scripts/taglist.vim')
+call minpac#add('kana/vim-textobj-user')
+call minpac#add('nelstrom/vim-textobj-rubyblock')
+call minpac#add('rking/ag.vim')
+call minpac#add('janko-m/vim-test')
+call minpac#add('SirVer/ultisnips')
+call minpac#add('honza/vim-snippets')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('scrooloose/syntastic')
+call minpac#add('slashmili/alchemist.vim')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('rizzatti/dash.vim')
+call minpac#add('tomlion/vim-solidity', {'type':'opt'})
+
+command! PackUpdate call minpac#update()
+command! PackClean  call minpac#clean()
 
 runtime macros/matchit.vim
 filetype plugin indent off
@@ -144,7 +149,7 @@ map <leader>v :view %%
 " Strip whitespace on buffer write using the better-whitespace plugin
 autocmd BufWritePre * StripWhitespace
 let g:better_whitespace_filetypes_blacklist=['md', 'markdown']
-
+ 
 let g:LustyExplorerSuppressRubyWarning = 1
 
 " In insert mode, cursor is a pipe. In normal mode, a block
@@ -218,7 +223,7 @@ augroup vimrcEx
     \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,css set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
