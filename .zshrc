@@ -27,7 +27,7 @@ export PATH=$HOME/projects/elixir/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
 export PATH="$PATH:/path/to/elixir/bin"
 
-export EDITOR=vim
+export EDITOR=nvim
 export SHELL=/bin/zsh
 
 export AWS_IAM_HOME=~/bin/IAMCli-1.5.0
