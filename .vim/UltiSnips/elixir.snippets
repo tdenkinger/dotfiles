@@ -97,13 +97,16 @@ end
 endsnippet
 
 snippet gscall
-GenServer.call($1)
+GenServer.call(__MODULE__, $0)
+
 endsnippet
 
 snippet gscast
-GenServer.cast($1)
+GenServer.cast(__MODULE__, $0)
+
 endsnippet
 
 snippet gsinfo
-GenServer.info($1)
+GenServer.info(__MODULE__, $0)
+
 endsnippet
