@@ -28,6 +28,8 @@ call minpac#add('slashmili/alchemist.vim')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('rizzatti/dash.vim')
 call minpac#add('tomlion/vim-solidity', {'type':'opt'})
+call minpac#add('machakann/vim-highlightedyank')
+call minpac#add('jlanzarotta/bufexplorer')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -152,8 +154,6 @@ map <leader>v :view %%
 " Strip whitespace on buffer write using the better-whitespace plugin
 autocmd BufWritePre * StripWhitespace
 let g:better_whitespace_filetypes_blacklist=['md', 'markdown']
- 
-let g:LustyExplorerSuppressRubyWarning = 1
 
 " In insert mode, cursor is a pipe. In normal mode, a block
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -269,13 +269,6 @@ set grepprg=ag\ --nogroup\ --nocolor
 " occurrences of the word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" multiple cursor remap
-" let g:multi_cursor_use_default_mapping=0
-" let g:multi_cursor_next_key='<C-m>'
-" let g:multi_cursor_prev_key='<C-p>'
-" let g:multi_cursor_skip_key='<C-x>'
-" let g:multi_cursor_quit_key='<Esc>'
-
 " Tell alchemist where to find elixir/erlang
 let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"
 
@@ -285,6 +278,11 @@ let g:airline_section_z = ''
 
 " invoke dash on the word under the cursor
 nmap <leader>D :Dash<cr>
-
 " invoke dash but wait for further input
 nmap <leader>d :Dash
+
+" Stuff below is neovim only
+" Show incremental matches in substitution
+" :set inccommand=nosplit
+" Preview the substitution in a split
+" :set inccommand=split
