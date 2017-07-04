@@ -285,4 +285,4 @@ nmap <leader>d :Dash
 " Show incremental matches in substitution
 " :set inccommand=nosplit
 " Preview the substitution in a split
-" :set inccommand=split
+:set inccommand=split
