@@ -26,6 +26,7 @@ export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
 export PATH=$HOME/projects/elixir/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
 export PATH="$PATH:/path/to/elixir/bin"
+export PATH=$PATH:/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
 
 export EDITOR=vim
 export SHELL=/bin/zsh
@@ -39,16 +40,10 @@ export LANG="$LC_ALL"
 
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
-# Below will attach to a tmux session if tmux is not already running
-# when the shell is started.
-_not_inside_tmux() { [[ -z "$TMUX" ]] }
-
-ensure_tmux_is_running() {
-  if _not_inside_tmux; then
-    ~/tat
-  fi
-}
-
-ensure_tmux_is_running
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+chruby ruby-2.4.0
+
