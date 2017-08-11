@@ -166,7 +166,7 @@ let g:vroom_clear_screen=0
 
 " This is used to remove accents from the YouTube adjustment reports so they
 " process through the SIP system correctly.
-:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚß','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U____s')
+:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚßµÂ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U____s_A')
 
 " Map up and down arrow keys to move lines and visual selections in
 " normal, insert and visual modes
@@ -284,4 +284,4 @@ nmap <leader>d :Dash
 " Show incremental matches in substitution
 " :set inccommand=nosplit
 " Preview the substitution in a split
-:set inccommand=split
+" :set inccommand=split
