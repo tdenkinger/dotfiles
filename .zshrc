@@ -10,8 +10,6 @@ HISTSIZE=20000
 HISTFILE=~/.zsh_history
 SAVEHIST=20000
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
@@ -22,12 +20,11 @@ unsetopt correct
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/bin:/user/local/sbin"
-export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
 export PATH=$HOME/projects/elixir/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
 export PATH="$PATH:/path/to/elixir/bin"
 
-export EDITOR=nvim
+export EDITOR=vim
 export SHELL=/bin/zsh
 
 export AWS_IAM_HOME=~/bin/IAMCli-1.5.0
@@ -37,18 +34,6 @@ export PATH=$AWS_IAM_HOME/bin:$PATH
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-
-# Below will attach to a tmux session if tmux is not already running
-# when the shell is started.
-_not_inside_tmux() { [[ -z "$TMUX" ]] }
-
-ensure_tmux_is_running() {
-  if _not_inside_tmux; then
-    ~/tat
-  fi
-}
-
-ensure_tmux_is_running
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
