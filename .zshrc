@@ -34,6 +34,7 @@ export SHELL=/bin/zsh
 export AWS_IAM_HOME=~/bin/IAMCli-1.5.0
 export AWS_CREDENTIAL_FILE=$AWS_IAM_HOME/aws-credential.template
 export PATH=$AWS_IAM_HOME/bin:$PATH
+export PATH=$HOME/Library/Python/3.6/bin:$PATH
 
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"

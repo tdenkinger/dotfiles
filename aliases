@@ -9,7 +9,8 @@ alias l="ls -alG"
 alias ga="git add ."
 alias gcm="git commit -m"
 alias gs="git status"
-alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gl="git l"
+alias gsl="git smartlog"
 
 alias tmux="TERM=screen-256color tmux"
 
@@ -25,18 +26,27 @@ alias lyric="TERM=xterm ssh -i ~/.ssh/prod_key centos@ec2-52-207-196-84.compute-
 alias tcstats="TERM=xterm ssh -i ~/.ssh/prod_key ubuntu@ec2-52-206-251-139.compute-1.amazonaws.com"
 alias jgm_staging="TERM=xterm ssh -i .ssh/prod_key ubuntu@ec2-52-206-224-138.compute-1.amazonaws.com"
 alias jgm1="TERM=xterm ssh -i .ssh/prod_key ubuntu@ec2-23-20-228-104.compute-1.amazonaws.com"
+alias jgm2="TERM=xterm ssh -i .ssh/prod_key ubuntu@ec2-52-45-157-10.compute-1.amazonaws.com"
 
+alias trends2="ssh -i ~/.ssh/trends_www.pem centos@ec2-52-3-42-14.compute-1.amazonaws.com"
+alias trends1="ssh -i ~/.ssh/trends_www.pem centos@ec2-52-70-106-50.compute-1.amazonaws.com"
 alias web1="ssh -i ~/.ssh/prod_key centos@ec2-52-44-68-247.compute-1.amazonaws.com"
 alias web2="ssh -i ~/.ssh/prod_key centos@ec2-54-172-35-101.compute-1.amazonaws.com"
 alias web3="ssh -i ~/.ssh/prod_key centos@ec2-34-226-12-122.compute-1.amazonaws.com"
 alias web4="ssh -i ~/.ssh/prod_key centos@ec2-52-5-168-132.compute-1.amazonaws.com"
 alias web5="ssh -i ~/.ssh/prod_key centos@ec2-52-22-15-132.compute-1.amazonaws.com"
-alias studio="ssh -i ~/.ssh/prod_key centos@ec2-34-192-19-31.compute-1.amazonaws.com"
+alias studio3="ssh -i ~/.ssh/prod_key centos@ec2-34-192-19-31.compute-1.amazonaws.com"
 alias studio4="ssh -i ~/.ssh/prod_key centos@ec2-52-0-169-56.compute-1.amazonaws.com"
 alias prodb3="TERM=xterm ssh -i ~/.ssh/prod_key centos@52.203.21.244"
 alias redis="ssh -i ~/.ssh/prod_key ubuntu@52.55.217.162"
 alias sip="ssh -i ~/.ssh/prod_key centos@ec2-54-81-144-199.compute-1.amazonaws.com"
 alias jenkins="ssh -i ~/.ssh/dropkloud-jenkins.pem ec2-user@ec2-54-204-17-11.compute-1.amazonaws.com"
+alias sk="ssh -i ~/.ssh/tunecore1.pem centos@ec2-34-227-215-75.compute-1.amazonaws.com"
 
 alias artwork_api="~/create_api_directories.sh"
+alias reporter="ssh -i ~/.ssh/tc_reporter.pem centos@ec2-54-87-236-71.compute-1.amazonaws.com"
 
+alias web6="ssh -i ~/.ssh/prod_key centos@ec2-34-231-131-203.compute-1.amazonaws.com"
+alias web7="ssh -i ~/.ssh/prod_key centos@ec2-52-6-121-112.compute-1.amazonaws.com"
+
+alias petrivpc="ssh -i ~/.ssh/tunecore1.pem ec2-user@54.172.226.164"
