@@ -6,8 +6,8 @@
     uncommit = reset --soft HEAD^
     unstage = reset
 [user]
-    name = Troy Denkinger
-    email = tdenkinger@gmail.com
+	name = Troy Denkinger
+	email = tdenkinger@gmail.com
 [push]
 	default = upstream
 [core]
