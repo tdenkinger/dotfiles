@@ -113,6 +113,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" close the quick fix window
+nnoremap ;; :cclose<CR>
+
 " use either key combo to leave mode
 inoremap kj <esc>:w<CR>
 inoremap jk <esc>:w<CR>
