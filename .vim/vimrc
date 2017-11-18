@@ -1,23 +1,37 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'rking/ag.vim'
-Plugin 'janko-m/vim-test'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'machakann/vim-highlightedyank'
-Plugin 'jlanzarotta/bufexplorer'
-call vundle#end()
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type':'opt'})
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('itchyny/lightline.vim')
+call minpac#add('Townk/vim-autoclose')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-endwise')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('ntpeters/vim-better-whitespace')
+call minpac#add('vim-scripts/taglist.vim')
+call minpac#add('kana/vim-textobj-user')
+call minpac#add('nelstrom/vim-textobj-rubyblock')
+call minpac#add('rking/ag.vim')
+call minpac#add('janko-m/vim-test')
+call minpac#add('SirVer/ultisnips')
+call minpac#add('honza/vim-snippets')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('w0rp/ale')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('machakann/vim-highlightedyank')
+call minpac#add('jlanzarotta/bufexplorer')
+call minpac#add('slashmili/alchemist.vim')
+call minpac#add('airblade/vim-gitgutter')
+
+command! PackUpdate call minpac#update()
+command! PackClean  call minpac#clean()
 
 filetype plugin indent on
 runtime macros/matchit.vim
@@ -52,9 +66,10 @@ set nowb
 set noswapfile
 set linebreak
 set ignorecase smartcase
-set cursorline
 set magic
-set cursorcolumn
+" Using these causes scrolling slowdown in vim8
+" set cursorline
+" set cursorcolumn
 set cmdheight=2
 set switchbuf=useopen
 set numberwidth=4
@@ -220,3 +235,51 @@ set grepprg=ag\ --nogroup\ --nocolor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 map y <Plug>(highlightedyank)
+
+" Lightline configuration
+let g:lightline = {
+\ 'colorscheme': 'one',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
