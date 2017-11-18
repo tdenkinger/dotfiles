@@ -38,6 +38,7 @@ alias web5="ssh -i ~/.ssh/prod_key centos@ec2-52-22-15-132.compute-1.amazonaws.c
 alias studio3="ssh -i ~/.ssh/prod_key centos@ec2-34-192-19-31.compute-1.amazonaws.com"
 alias studio4="ssh -i ~/.ssh/prod_key centos@ec2-52-0-169-56.compute-1.amazonaws.com"
 alias prodb3="TERM=xterm ssh -i ~/.ssh/prod_key centos@52.203.21.244"
+alias prodb_new="TERM=xterm ssh -i .ssh/prod_key centos@ec2-34-229-182-178.compute-1.amazonaws.com"
 alias redis="ssh -i ~/.ssh/prod_key ubuntu@52.55.217.162"
 alias sip="ssh -i ~/.ssh/prod_key centos@ec2-54-81-144-199.compute-1.amazonaws.com"
 alias jenkins="ssh -i ~/.ssh/dropkloud-jenkins.pem ec2-user@ec2-54-204-17-11.compute-1.amazonaws.com"
@@ -46,7 +47,6 @@ alias sk="ssh -i ~/.ssh/tunecore1.pem centos@ec2-34-227-215-75.compute-1.amazona
 alias artwork_api="~/create_api_directories.sh"
 alias reporter="ssh -i ~/.ssh/tc_reporter.pem centos@ec2-54-87-236-71.compute-1.amazonaws.com"
 
-alias web6="ssh -i ~/.ssh/prod_key centos@ec2-34-231-131-203.compute-1.amazonaws.com"
-alias web7="ssh -i ~/.ssh/prod_key centos@ec2-52-6-121-112.compute-1.amazonaws.com"
-
 alias petrivpc="ssh -i ~/.ssh/tunecore1.pem ec2-user@54.172.226.164"
+
+alias prototype="ssh root@104.131.6.131"

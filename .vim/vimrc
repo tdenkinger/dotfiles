@@ -3,11 +3,11 @@ filetype off
 
 packadd minpac
 call minpac#init()
+call minpac#add('k-takata/minpac', {'type':'opt'})
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
-call minpac#add('k-takata/minpac', {'type':'opt'})
 call minpac#add('ctrlpvim/ctrlp.vim')
-call minpac#add('bling/vim-airline')
+call minpac#add('itchyny/lightline.vim')
 call minpac#add('Townk/vim-autoclose')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-endwise')
@@ -15,6 +15,7 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('ntpeters/vim-better-whitespace')
+call minpac#add('vim-scripts/taglist.vim')
 call minpac#add('kana/vim-textobj-user')
 call minpac#add('nelstrom/vim-textobj-rubyblock')
 call minpac#add('rking/ag.vim')
@@ -22,19 +23,20 @@ call minpac#add('janko-m/vim-test')
 call minpac#add('SirVer/ultisnips')
 call minpac#add('honza/vim-snippets')
 call minpac#add('christoomey/vim-tmux-navigator')
-call minpac#add('scrooloose/syntastic')
+call minpac#add('w0rp/ale')
 call minpac#add('sheerun/vim-polyglot')
-call minpac#add('rizzatti/dash.vim')
 call minpac#add('machakann/vim-highlightedyank')
 call minpac#add('jlanzarotta/bufexplorer')
-call minpac#add('tomlion/vim-solidity', {'type':'opt'})
-call minpac#add('slashmili/alchemist.vim', {'type':'opt'})
+call minpac#add('slashmili/alchemist.vim')
+call minpac#add('airblade/vim-gitgutter')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
 
+filetype plugin indent on
 runtime macros/matchit.vim
-filetype plugin indent off
+
+set runtimepath+=~/.vim,~/.vim/after
 
 set runtimepath+=~/.vim,~/.vim/after
 set packpath+=~/.vim
@@ -67,56 +69,38 @@ set nowb
 set noswapfile
 set linebreak
 set ignorecase smartcase
-set cursorline
 set magic
-set cursorcolumn
+" Using these causes scrolling slowdown in vim8
+" set cursorline
+" set cursorcolumn
 set cmdheight=2
 set switchbuf=useopen
 set numberwidth=4
 set showtabline=2
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
 set scrolloff=3
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-" display incomplete commands
 set showcmd
-" Enable highlighting for syntax
 syntax on
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
-" Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
-" use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
-" make tab completion for files/buffers act like bash
 set wildmenu
-set tags=./tags,tags,./.git/tags;
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*_build*
+
 let mapleader=","
 
-" Fast saving in all modes
 nnoremap <Leader>w :w<CR>
 inoremap <C-w> <Esc>:w<CR>
 vnoremap <Leader>w <Esc>:w<CR>
 
 map <leader>f :CtrlP<cr>
 
-let g:ctrlp_working_path_mode = 'ra'
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-" This ignores hidden files
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
-" Enable MRU for CtrlP
 let g:ctrlp_cmd = 'CtrlP'
-" make the ctrlp root the current working directory
-" this is helpful when working in a project with subprojects
-" such as an Elixir umbrella app where you don't want to see
-" files from other apps under the umbrella
 let g:ctrlp_working_path_mode = ''
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,22 +226,6 @@ augroup vimrcEx
   autocmd! CmdwinLeave * :call MapCR()
 augroup END
 
-" Elm stuff
-" Turn off the elm-vim mappings
-let g:elm_setup_keybindings = 0
-" Automatically format elm on save
-let g:elm_format_autosave = 1
-
-" Options for Syntastic
-" Check syntax on file open
-let g:syntastic_check_on_open = 1
-" Add errors to the location list, allows jump with :lnext :lprev
-let g:syntastic_always_populate_loc_list = 1
-" Disable check on file save
-" let g:syntastic_check_on_wq = 0
-
-map <C-n> :NERDTreeToggle<CR>
-
 " Make it easy to get to ag
 nnoremap \ :Ag<SPACE>
 
@@ -271,17 +239,52 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Tell alchemist where to find elixir/erlang
 let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"
 
-" Do not show the git branch in the status line for airline
-let g:airline_section_b = ''
-let g:airline_section_z = ''
+map y <Plug>(highlightedyank)
 
-" invoke dash on the word under the cursor
-nmap <leader>D :Dash<cr>
-" invoke dash but wait for further input
-nmap <leader>d :Dash
+" Lightline configuration
+let g:lightline = {
+\ 'colorscheme': 'one',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
 
-" Stuff below is neovim only
-" Show incremental matches in substitution
-" :set inccommand=nosplit
-" Preview the substitution in a split
-" :set inccommand=split
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()

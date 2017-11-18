@@ -10,8 +10,6 @@ HISTSIZE=20000
 HISTFILE=~/.zsh_history
 SAVEHIST=20000
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
@@ -22,7 +20,6 @@ unsetopt correct
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/bin:/user/local/sbin"
-export PATH=/Users/tdenkinger/nvm/v0.8.23/bin:$PATH
 export PATH=$HOME/projects/elixir/bin:$PATH
 export PATH=$HOME/usr/bin:$PATH
 export PATH="$PATH:/path/to/elixir/bin"
@@ -44,7 +41,7 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-chruby ruby-2.4.0
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
+# chruby ruby-2.4.0
 
