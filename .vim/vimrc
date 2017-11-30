@@ -1,47 +1,38 @@
 set nocompatible
 filetype off
 
-packadd minpac
-call minpac#init()
-call minpac#add('k-takata/minpac', {'type':'opt'})
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('ludovicchabant/vim-gutentags')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('itchyny/lightline.vim')
-call minpac#add('Townk/vim-autoclose')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-endwise')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-repeat')
-call minpac#add('ntpeters/vim-better-whitespace')
-call minpac#add('vim-scripts/taglist.vim')
-call minpac#add('kana/vim-textobj-user')
-call minpac#add('nelstrom/vim-textobj-rubyblock')
-call minpac#add('rking/ag.vim')
-call minpac#add('janko-m/vim-test')
-call minpac#add('SirVer/ultisnips')
-call minpac#add('honza/vim-snippets')
-call minpac#add('christoomey/vim-tmux-navigator')
-call minpac#add('w0rp/ale')
-call minpac#add('sheerun/vim-polyglot')
-call minpac#add('machakann/vim-highlightedyank')
-call minpac#add('jlanzarotta/bufexplorer')
-call minpac#add('slashmili/alchemist.vim')
-call minpac#add('airblade/vim-gitgutter')
-call minpac#add('junegunn/fzf.vim')
-
-command! PackUpdate call minpac#update()
-command! PackClean  call minpac#clean()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'itchyny/lightline.vim'
+Plugin 'Townk/vim-autoclose'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'rking/ag.vim'
+Plugin 'janko-m/vim-test'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'w0rp/ale'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'machakann/vim-highlightedyank'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf.vim'
 
 filetype plugin indent on
 runtime macros/matchit.vim
 
 set runtimepath+=~/.vim,~/.vim/after,/usr/local/opt/fzf
-
-set runtimepath+=~/.vim,~/.vim/after
-set packpath+=~/.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
@@ -243,6 +234,13 @@ let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"
 
 map y <Plug>(highlightedyank)
 
+"Open netrw
+nmap <leader>x :Vex <cr>
+" Default the netrw split to be only 30%
+let g:netrw_winsize = 30
+" Open files from netwr in previous split
+let g:netrw_browse_split = 4
+
 " Lightline configuration
 let g:lightline = {
 \ 'colorscheme': 'solarized',
@@ -290,3 +288,4 @@ function! s:MaybeUpdateLightline()
 endfunction
 
 autocmd User ALELint call s:MaybeUpdateLightline()
+" End lightline configuration
