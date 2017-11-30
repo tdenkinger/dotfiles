@@ -41,7 +41,3 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-# source /usr/local/share/chruby/chruby.sh
-# source /usr/local/share/chruby/auto.sh
-# chruby ruby-2.4.0
-
