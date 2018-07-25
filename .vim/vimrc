@@ -3,9 +3,8 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'tpope/vim-unimpaired'
 Plugin 'itchyny/lightline.vim'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'Townk/vim-autoclose'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
@@ -13,21 +12,21 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'vim-scripts/taglist.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'rking/ag.vim'
 Plugin 'janko-m/vim-test'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'w0rp/ale'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'junegunn/fzf.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'junegunn/fzf.vim'
+Plugin 'rking/ag.vim'
+Plugin 'mhinz/vim-mix-format'
+Plugin 'maximbaz/lightline-ale'
+call vundle#end()
 
 filetype plugin indent on
 runtime macros/matchit.vim
@@ -37,6 +36,8 @@ set runtimepath+=~/.vim,~/.vim/after,/usr/local/opt/fzf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use older regex engine
+set re=1
 set si
 set shell=/bin/sh
 set clipboard=unnamed
@@ -63,9 +64,6 @@ set noswapfile
 set linebreak
 set ignorecase smartcase
 set magic
-" Using these causes scrolling slowdown in vim8
-" set cursorline
-" set cursorcolumn
 set cmdheight=2
 set switchbuf=useopen
 set numberwidth=4
@@ -82,6 +80,9 @@ filetype plugin indent on
 set wildmode=longest,list
 set wildmenu
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*_build*
+
+set undofile
+set undodir=~/.undodir
 
 let mapleader=","
 
@@ -113,10 +114,10 @@ nnoremap <c-l> <c-w>l
 nnoremap ;; :cclose<CR>
 
 " use either key combo to leave mode
-inoremap kj <esc>:w<CR>
-inoremap jk <esc>:w<CR>
+inoremap kj <esc>
+inoremap jk <esc>
 
-" Clear the search buffer when hitting return
+" Clear the search buffer when hitting space
 function! MapCR()
   nnoremap <space> :nohlsearch<cr>
 endfunction
@@ -130,6 +131,9 @@ map <leader>v :view %%
 " Strip whitespace on buffer write using the better-whitespace plugin
 autocmd BufWritePre * StripWhitespace
 let g:better_whitespace_filetypes_blacklist=['md', 'markdown']
+
+" Write the file when leaving insert mode
+autocmd InsertLeave * write
 
 " In insert mode, cursor is a pipe. In normal mode, a block
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -229,9 +233,6 @@ set grepprg=ag\ --nogroup\ --nocolor
 " occurrences of the word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Tell alchemist where to find elixir/erlang
-let g:alchemist#elixir_erlang_src = "/Users/troy/.asdf/shims"
-
 map y <Plug>(highlightedyank)
 
 "Open netrw
@@ -241,45 +242,23 @@ let g:netrw_winsize = 30
 " Open files from netwr in previous split
 let g:netrw_browse_split = 4
 
-" Lightline configuration
-let g:lightline = {
-\ 'colorscheme': 'solarized',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
+" Lightline configuration (including Ale checks)
+let g:lightline = {'colorscheme': 'solarized'}
 
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-endfunction
+let g:lightline.component_expand = {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors'
+      \ }
 
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
+let g:lightline.component_type = {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error'
+      \ }
 
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
+let g:lightline.active = {
+      \     'right': [['lineinfo'],['percent'],['readonly', 'linter_errors', 'linter_warnings' ]],
+      \     'left': [['mode', 'paste'], ['relativepath', 'modified']]
+      \ }
 
 function! s:MaybeUpdateLightline()
   if exists('#lightline')
@@ -289,3 +268,17 @@ endfunction
 
 autocmd User ALELint call s:MaybeUpdateLightline()
 " End lightline configuration
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+" exlude gitignore files from ctrlP indexing
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" Testing: run in a neovim terminal split
+let test#strategy = "basic"
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+end
+
+" Format Elixir files on save
+let g:mix_format_on_save = 1
