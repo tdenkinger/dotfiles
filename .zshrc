@@ -39,3 +39,7 @@ export LANG="$LC_ALL"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export ERL_AFLAGS="-kernel shell_history enabled"
