@@ -67,7 +67,7 @@ set magic
 set cmdheight=2
 set switchbuf=useopen
 set numberwidth=4
-set showtabline=2
+set showtabline=1
 set t_ti= t_te=
 set scrolloff=3
 set backup
@@ -226,8 +226,8 @@ augroup END
 " Make it easy to get to ag
 nnoremap \ :Ag<SPACE>
 
-" Use ag for vim's grep
-set grepprg=ag\ --nogroup\ --nocolor
+" Make sure Python highlighting is on
+let g:python_highlight_all = 1
 
 " use ag to search the current project to find all
 " occurrences of the word under the cursor
@@ -235,12 +235,16 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 map y <Plug>(highlightedyank)
 
-"Open netrw
 nmap <leader>x :Vex <cr>
+"netrw
 " Default the netrw split to be only 30%
 let g:netrw_winsize = 30
 " Open files from netwr in previous split
 let g:netrw_browse_split = 4
+" Default to this list style
+let g:netrw_liststyle = 3
+" Remove the banner
+let g:netrw_banner = 0
 
 " Lightline configuration (including Ale checks)
 let g:lightline = {'colorscheme': 'solarized'}
@@ -269,9 +273,7 @@ endfunction
 autocmd User ALELint call s:MaybeUpdateLightline()
 " End lightline configuration
 
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
-" exlude gitignore files from ctrlP indexing
+" exlude gitignore files from fuzzy file indexing
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Testing: run in a neovim terminal split
@@ -282,3 +284,6 @@ end
 
 " Format Elixir files on save
 let g:mix_format_on_save = 1
+
+" use ripgrep for fzf
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
