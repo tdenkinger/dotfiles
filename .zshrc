@@ -43,3 +43,8 @@ export LANG="$LC_ALL"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+export GOPATH=/Users/troy/go
+export PATH=$GOPATH/bin:$PATH
