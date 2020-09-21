@@ -17,7 +17,6 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'janko-m/vim-test'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'w0rp/ale'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'junegunn/fzf.vim'
@@ -26,6 +25,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rking/ag.vim'
 Plugin 'mhinz/vim-mix-format'
 Plugin 'maximbaz/lightline-ale'
+Plugin 'simnalamburt/vim-mundo'
 call vundle#end()
 
 filetype plugin indent on
@@ -105,10 +105,10 @@ map <leader>c :Tags<cr>
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Move around splits with <c-hjkl>
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
 
 " close the quick fix window
 nnoremap ;; :cclose<CR>
@@ -125,29 +125,25 @@ call MapCR()
 
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-map <leader>v :view %%
 
 " Strip whitespace on buffer write using the better-whitespace plugin
 autocmd BufWritePre * StripWhitespace
 let g:better_whitespace_filetypes_blacklist=['md', 'markdown']
 
 " Write the file when leaving insert mode
-autocmd InsertLeave * write
+" autocmd InsertLeave * write
 
 " In insert mode, cursor is a pipe. In normal mode, a block
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 :hi ColorColumn guibg=#2d2d2d ctermbg=229 ctermfg=236
 :hi CursorColumn guibg=#2d2d2d ctermbg=234
 
 " using vroom to run tests, do not clear the screen before the run
 let g:vroom_clear_screen=0
 
-" This is used to remove accents from the YouTube adjustment reports so they
-" process through the SIP system correctly.
-:map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚßµÂ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U____s_A')
+" This can transliterate extended characters to ASCII likenesses
+" :map <F3> :%s/.*/\=tr(submatch(0), 'óèâìÎ·²ïæçùãÿøþò¿ü¨êÜë´öäáàôåíúéàñÑÏÉÍÀÈÁÞØÚßµÂ','oeaii__iacuayopo_u_eUe_oaaaoaiueanNIE__IAEA_O_U____s_A')
 
 " Map up and down arrow keys to move lines and visual selections in
 " normal, insert and visual modes
@@ -161,7 +157,7 @@ vnoremap <Down> :m '>+1<CR>gv=gv
 nnoremap <Right> xp
 nnoremap <Left> Xph
 
-" with out this, editing crontabs fails on some machines
+" without this, editing crontabs fails on some machines
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Map whole line completion to a single key
@@ -179,11 +175,9 @@ nmap <silent> <leader>g :TestVisit<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" Edit and source the .vimrc easily
-nmap <leader>vr :vsp $MYVIMRC<cr>
+" Sources the .vimrc
 nmap <leader>so :source $MYVIMRC<cr>
 
 " Always vertically split diff windows
@@ -217,7 +211,7 @@ augroup vimrcEx
   autocmd! FileType mkd setlocal syn=off
   autocmd! FileType markdown setlocal syn=off
 
-" Leave the return key alone when in command line windows, since it's used
+  " Leave the return key alone when in command line windows, since it's used
   " to run commands there.
   autocmd! CmdwinEnter * :unmap <cr>
   autocmd! CmdwinLeave * :call MapCR()
@@ -226,25 +220,12 @@ augroup END
 " Make it easy to get to ag
 nnoremap \ :Ag<SPACE>
 
-" Make sure Python highlighting is on
-let g:python_highlight_all = 1
-
 " use ag to search the current project to find all
 " occurrences of the word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" Briefly highlights the text that has been yanked
 map y <Plug>(highlightedyank)
-
-nmap <leader>x :Vex <cr>
-"netrw
-" Default the netrw split to be only 30%
-let g:netrw_winsize = 30
-" Open files from netwr in previous split
-let g:netrw_browse_split = 4
-" Default to this list style
-let g:netrw_liststyle = 3
-" Remove the banner
-let g:netrw_banner = 0
 
 " Lightline configuration (including Ale checks)
 let g:lightline = {'colorscheme': 'solarized'}
@@ -273,7 +254,7 @@ endfunction
 autocmd User ALELint call s:MaybeUpdateLightline()
 " End lightline configuration
 
-" exlude gitignore files from fuzzy file indexing
+" Exlude gitignore files from fuzzy file indexing
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Testing: run in a neovim terminal split
@@ -282,8 +263,14 @@ if has('nvim')
   tmap <C-o> <C-\><C-n>
 end
 
-" Format Elixir files on save
-let g:mix_format_on_save = 1
-
-" use ripgrep for fzf
+" Use ripgrep for fzf
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+" Make sure Python highlighting is on
+let g:python_highlight_all = 1
+
+" Mundo config
+nnoremap <F5> :MundoToggle<CR>
+
+" Format Elixir files on save
+" let g:mix_format_on_save = 1

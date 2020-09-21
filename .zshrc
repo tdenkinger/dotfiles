@@ -18,6 +18,9 @@ source $HOME/zsh_aliases
 unsetopt correct_all
 unsetopt correct
 
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
 export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/bin:/user/local/sbin"
 export PATH=$HOME/projects/elixir/bin:$PATH
@@ -48,3 +51,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 export GOPATH=/Users/troy/go
 export PATH=$GOPATH/bin:$PATH
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
